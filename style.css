@@ -1,0 +1,474 @@
+/* Destination Inconnue — Tracy & Guigui
+   Nuit bleue + un seul objet lumineux : la carte d'embarquement en papier. */
+
+:root {
+  --nuit: #1b2436;
+  --nuit-2: #232e45;
+  --nuit-3: #2c3857;
+  --brume: #9aa7c4;      /* texte secondaire sur nuit */
+  --clair: #e9edf6;      /* texte principal sur nuit */
+  --papier: #f3ead7;
+  --papier-2: #eaddc2;
+  --encre: #2a2721;
+  --encre-2: #6b6252;    /* texte secondaire sur papier */
+  --lueur: #e8b84b;
+  --tampon: #c2503e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--nuit);
+  color: var(--clair);
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 1.0625rem;
+}
+
+main, .ciel-contenu, .pied {
+  max-width: 30rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+h1, h2, h3 { line-height: 1.12; font-weight: 600; margin: 0; }
+
+a { color: var(--lueur); }
+
+:focus-visible {
+  outline: 2px solid var(--lueur);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- En-tête : le ciel ---------- */
+
+.ciel { position: relative; overflow: hidden; padding: 3.25rem 0 2.5rem; }
+
+.constellation {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.ciel-contenu { position: relative; }
+
+.sceau {
+  display: grid; place-items: center;
+  width: 3.4rem; height: 3.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--lueur);
+  box-shadow: inset 0 0 0 3px var(--nuit), inset 0 0 0 4px var(--lueur);
+  background: transparent;
+  color: var(--lueur);
+  font: 600 1rem/1 "Fraunces", Georgia, serif;
+  letter-spacing: .04em;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: clamp(2.7rem, 12vw, 3.6rem);
+  font-variation-settings: "opsz" 144;
+  letter-spacing: -0.01em;
+}
+h1 em { font-style: italic; font-weight: 500; }
+
+.sous-titre {
+  margin: 1.1rem 0 0;
+  color: var(--lueur);
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+.intro { margin: 1.25rem 0 0; color: var(--brume); }
+
+/* ---------- Sections ---------- */
+
+section { margin-top: 3rem; }
+
+section > h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.1rem;
+}
+
+/* ---------- La carte d'embarquement ---------- */
+
+.billet {
+  background: linear-gradient(175deg, var(--papier), var(--papier-2));
+  color: var(--encre);
+  border-radius: 10px;
+  box-shadow: 0 14px 40px rgba(6, 10, 20, .55);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .85rem;
+}
+
+.billet-tete {
+  display: flex; flex-wrap: wrap; gap: .25rem .75rem;
+  justify-content: space-between; align-items: baseline;
+  padding: .9rem 1.1rem .7rem;
+  border-bottom: 1px solid rgba(42, 39, 33, .25);
+}
+
+.billet-agence {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600; font-style: italic;
+  font-size: 1rem;
+}
+
+.billet-type {
+  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--encre-2);
+}
+
+.billet-champs {
+  margin: 0; padding: .9rem 1.1rem .4rem;
+  display: grid; grid-template-columns: auto 1fr; gap: .45rem .9rem;
+}
+
+.billet-champs dt {
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--encre-2); align-self: baseline; padding-top: .15em;
+}
+
+.billet-champs dd { margin: 0; font-weight: 500; overflow-wrap: anywhere; }
+
+.billet-champs dd.masque { color: rgba(42, 39, 33, .35); letter-spacing: .18em; }
+
+.billet-destination {
+  padding: .5rem 1.1rem 1rem;
+  display: flex; flex-direction: column;
+}
+
+.dest-label {
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--encre-2);
+}
+
+.dest-valeur {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.9rem; font-weight: 600; line-height: 1.15;
+}
+
+.dest-valeur.masque { color: rgba(42, 39, 33, .4); }
+
+.dest-note { font-size: .72rem; color: var(--encre-2); font-style: normal; }
+
+.billet-perfo {
+  position: relative;
+  border-top: 2px dashed rgba(42, 39, 33, .35);
+}
+.billet-perfo::before, .billet-perfo::after {
+  content: "";
+  position: absolute; top: -11px;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--nuit);
+}
+.billet-perfo::before { left: -10px; }
+.billet-perfo::after { right: -10px; }
+
+.billet-talon {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: .85rem 1.1rem 1rem;
+}
+
+.code-barre {
+  flex: 1; height: 2rem; max-width: 12rem;
+  background: repeating-linear-gradient(90deg,
+    var(--encre) 0 2px, transparent 2px 5px,
+    var(--encre) 5px 9px, transparent 9px 11px,
+    var(--encre) 11px 12px, transparent 12px 16px);
+  opacity: .8;
+}
+
+.billet-ref { font-size: .72rem; color: var(--encre-2); }
+
+/* ---------- Passeport ---------- */
+
+.tampons {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .9rem;
+}
+
+.tampon {
+  width: 4.6rem; height: 4.6rem; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  border: 2px dashed var(--nuit-3);
+  color: var(--brume);
+  font-size: .95rem;
+  font-style: italic;
+}
+
+.tampon.obtenu {
+  border: 2px solid var(--tampon);
+  box-shadow: inset 0 0 0 3px transparent, inset 0 0 0 1px var(--tampon);
+  color: var(--tampon);
+  background: rgba(194, 80, 62, .08);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-style: normal;
+  font-size: .56rem; letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .3rem;
+}
+
+.tampon:nth-child(odd).obtenu { transform: rotate(-7deg); }
+.tampon:nth-child(even).obtenu { transform: rotate(5deg); }
+
+.tampon.nouveau { animation: tamponner .45s cubic-bezier(.2, 1.6, .4, 1) both; }
+
+@keyframes tamponner {
+  from { transform: scale(2.1) rotate(12deg); opacity: 0; }
+  to   { transform: scale(1) rotate(-7deg); opacity: 1; }
+}
+.tampon:nth-child(even).nouveau { animation-name: tamponner-pair; }
+@keyframes tamponner-pair {
+  from { transform: scale(2.1) rotate(-12deg); opacity: 0; }
+  to   { transform: scale(1) rotate(5deg); opacity: 1; }
+}
+
+/* ---------- Les enveloppes ---------- */
+
+#liste-chapitres { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+
+.enveloppe {
+  background: var(--nuit-2);
+  border: 1px solid var(--nuit-3);
+  border-radius: 12px;
+  padding: 1.15rem 1.15rem 1.25rem;
+}
+
+.env-tete { display: flex; gap: .9rem; align-items: baseline; }
+
+.env-num {
+  flex: none;
+  font-size: 1.5rem; font-weight: 600; font-style: italic;
+  color: var(--lueur);
+}
+
+.env-tete h3 { font-size: 1.18rem; }
+
+.env-sous { margin: .1rem 0 0; color: var(--brume); font-style: italic; font-size: .95rem; }
+
+.env-form { margin-top: 1rem; }
+
+.env-form label { display: block; font-size: .9rem; color: var(--brume); margin-bottom: .45rem; }
+
+.env-saisie { display: flex; gap: .55rem; }
+
+.env-saisie input {
+  flex: 1; min-width: 0;
+  background: var(--nuit);
+  border: 1px solid var(--nuit-3);
+  border-radius: 8px;
+  color: var(--clair);
+  font: 500 1rem/1.2 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .7rem .8rem;
+}
+
+.env-saisie input::placeholder { color: var(--nuit-3); letter-spacing: .2em; }
+
+.env-saisie button {
+  flex: none;
+  background: var(--lueur);
+  color: var(--encre);
+  border: 0; border-radius: 8px;
+  font: 600 1rem/1 "Fraunces", Georgia, serif;
+  padding: 0 1.1rem;
+  cursor: pointer;
+}
+
+.env-saisie button:disabled { opacity: .55; cursor: wait; }
+
+.env-msg { margin: .6rem 0 0; min-height: 1.2em; font-size: .92rem; color: var(--tampon); font-style: italic; }
+
+.enveloppe.erreur { animation: secouer .35s linear; }
+@keyframes secouer {
+  25% { translate: -5px 0; } 50% { translate: 5px 0; } 75% { translate: -3px 0; }
+}
+
+.enveloppe.ouverte { border-color: rgba(232, 184, 75, .4); }
+
+.env-contenu { margin-top: .9rem; }
+.env-contenu h3 { font-size: 1.15rem; color: var(--lueur); margin-bottom: .5rem; }
+.env-contenu p { margin: .6rem 0; }
+.env-contenu .aparte { color: var(--brume); font-style: italic; font-size: .95rem; }
+
+/* Cadre photo (polaroid) */
+
+.polaroid {
+  margin: 1.1rem 0 0;
+  background: var(--papier);
+  padding: .55rem .55rem 1.9rem;
+  border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(6, 10, 20, .5);
+  transform: rotate(-1.4deg);
+}
+
+.polaroid img { display: block; width: 100%; border-radius: 2px; }
+
+.polaroid.manquante img { display: none; }
+
+.polaroid.manquante::before {
+  content: "une photo viendra se glisser ici";
+  display: grid; place-items: center;
+  aspect-ratio: 4 / 3;
+  color: var(--encre-2);
+  font-style: italic; font-size: .9rem;
+  border: 1px dashed rgba(42, 39, 33, .35);
+  border-radius: 2px;
+}
+
+/* ---------- Les défis ---------- */
+
+.defis-intro { color: var(--brume); margin: -0.5rem 0 1.1rem; font-style: italic; }
+
+#liste-defis { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+
+.defi {
+  background: var(--nuit-2);
+  border: 1px solid var(--nuit-3);
+  border-radius: 12px;
+  padding: 1.15rem 1.15rem 1.25rem;
+}
+
+.defi.reussi { border-color: rgba(232, 184, 75, .4); }
+.defi.erreur { animation: secouer .35s linear; }
+.defi .env-form { margin-top: .4rem; }
+
+.lettres { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 .4rem; }
+
+.tuile {
+  width: 2.1rem; height: 2.4rem;
+  display: grid; place-items: center;
+  background: var(--papier); color: var(--encre);
+  border-radius: 6px;
+  font-weight: 600; font-size: 1.15rem;
+  box-shadow: 0 2px 6px rgba(6, 10, 20, .4);
+}
+
+.tuile:nth-child(3n) { transform: rotate(2.5deg); }
+.tuile:nth-child(3n + 1) { transform: rotate(-2deg); }
+
+.defi-indice { color: var(--brume); font-style: italic; font-size: .92rem; margin: .4rem 0 .7rem; }
+
+.memory {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: .5rem; margin: 1rem 0 .4rem;
+  max-width: 19rem;
+}
+
+.carte {
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  border: 1px solid var(--nuit-3);
+  background: var(--nuit);
+  color: var(--encre);
+  font-size: 1.5rem;
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.carte.vue { background: var(--papier); }
+
+.carte.trouvee {
+  background: rgba(232, 184, 75, .14);
+  border-color: var(--lueur);
+  color: var(--lueur);
+  cursor: default;
+}
+
+.seq {
+  display: flex; flex-wrap: wrap; gap: .55rem;
+  width: max-content; max-width: 100%;
+  background: var(--papier); color: var(--encre);
+  border-radius: 8px;
+  padding: .55rem .9rem;
+  font-size: 1.4rem;
+  margin: .4rem 0 1rem;
+}
+
+.quiz-question { display: block; font-size: .95rem; color: var(--brume); margin: .9rem 0 .35rem; }
+.quiz-ligne input { letter-spacing: normal; text-transform: none; }
+.quiz-valider { margin-top: 1rem; }
+
+.defi-badge {
+  display: inline-block;
+  border: 2px solid var(--tampon);
+  color: var(--tampon);
+  border-radius: 6px;
+  padding: .12rem .6rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  transform: rotate(-2deg);
+  margin: .2rem 0 .3rem;
+}
+
+/* ---------- Jour J ---------- */
+
+.compte {
+  display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap;
+  background: var(--nuit-2);
+  border: 1px solid var(--nuit-3);
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.2rem;
+}
+
+.compte strong {
+  font-size: 1.6rem; font-weight: 600;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--lueur);
+}
+
+.compte span { color: var(--brume); }
+
+#etapes { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+
+.etape {
+  border-left: 2px solid var(--nuit-3);
+  padding: .15rem 0 .3rem 1.05rem;
+}
+
+.etape-heure {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .82rem; color: var(--brume);
+}
+
+.etape h3 { font-size: 1.12rem; margin-top: .15rem; }
+
+.etape.ouverte { border-left-color: var(--lueur); }
+.etape.ouverte h3 { color: var(--lueur); }
+.etape p { margin: .45rem 0 0; }
+
+.etape.fermee h3 { color: var(--brume); }
+.etape.fermee .etape-note { margin: .3rem 0 0; color: var(--brume); font-style: italic; font-size: .92rem; }
+
+/* ---------- Pied, toast ---------- */
+
+.pied { padding-block: 3.5rem 2.5rem; color: var(--brume); font-style: italic; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 1.25rem;
+  translate: -50% 0;
+  max-width: min(26rem, calc(100vw - 2.5rem));
+  background: var(--papier); color: var(--encre);
+  border-radius: 10px;
+  padding: .8rem 1.1rem;
+  font-style: italic;
+  box-shadow: 0 10px 30px rgba(6, 10, 20, .6);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s, translate .25s;
+}
+
+.toast.visible { opacity: 1; translate: -50% -4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
